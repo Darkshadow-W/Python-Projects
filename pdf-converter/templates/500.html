@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Error - File Converter</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>500</h1>
+            <p>Internal Server Error</p>
+        </div>
+        <div class="converter-section">
+            <p style="text-align: center; color: var(--gray-700); margin: 20px 0;">
+                Something went wrong on our end. Please try again later.
+            </p>
+            <a href="/" style="display: inline-block; width: 100%; padding: 12px; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 6px; font-weight: 600;">
+                Go Home
+            </a>
+        </div>
+    </div>
+</body>
+</html>

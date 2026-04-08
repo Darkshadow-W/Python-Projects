@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: pdf_converter_db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD:-password}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-pdf_converter_db}
+      MYSQL_USER: ${MYSQL_USER:-converter_user}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-converter_password}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    networks:
+      - converter_network
+
+  flask_app:
+    build: .
+    container_name: pdf_converter_app
+    environment:
+      FLASK_APP: app.py
+      FLASK_ENV: ${FLASK_ENV:-development}
+      MYSQL_HOST: mysql
+      MYSQL_USER: ${MYSQL_USER:-converter_user}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-converter_password}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-pdf_converter_db}
+      MYSQL_PORT: 3306
+      SECRET_KEY: ${SECRET_KEY:-your-secret-key-change-in-production}
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./uploads:/app/uploads
+      - ./converted:/app/converted
+      - ./logs:/app/logs
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - converter_network
+    command: python app.py
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  converter_network:
+    driver: bridge

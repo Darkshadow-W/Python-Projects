@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Converter - Convert Files Easily</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📄 File Converter</h1>
+            <p>Convert between PDF, Word, PowerPoint, and more</p>
+        </div>
+
+        <div class="converter-section">
+            <div class="upload-area" id="uploadArea">
+                <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                </svg>
+                <h3>Drag & Drop Your File</h3>
+                <p>or click to browse</p>
+                <input type="file" id="fileInput" hidden accept=".pdf,.docx,.pptx,.doc,.ppt,.txt,.odt">
+            </div>
+
+            <div id="fileInfo" class="file-info hidden">
+                <div class="file-details">
+                    <span id="fileName" class="file-name"></span>
+                    <span id="fileSize" class="file-size"></span>
+                </div>
+            </div>
+
+            <div class="format-select">
+                <label for="targetFormat">Convert to:</label>
+                <select id="targetFormat">
+                    <option value="">Select target format</option>
+                </select>
+            </div>
+
+            <button id="convertBtn" class="btn-convert" disabled>Convert File</button>
+
+            <div id="progress" class="progress hidden">
+                <div class="progress-bar"></div>
+                <p id="progressText">Converting...</p>
+            </div>
+
+            <div id="message" class="message hidden"></div>
+
+            <div id="downloadSection" class="download-section hidden">
+                <h3>✓ Conversion Complete!</h3>
+                <button id="downloadBtn" class="btn-download">Download Converted File</button>
+                <button id="convertAnotherBtn" class="btn-convert-another">Convert Another File</button>
+            </div>
+        </div>
+
+        <div class="stats-section">
+            <div id="stats" class="stats-grid"></div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
