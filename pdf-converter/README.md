@@ -1,6 +1,6 @@
 # PDF File Converter 
 
-A modern file conversion platform that converts between PDF, Word, PowerPoint, and text files with a minimal UI and MySQL database backend.
+A modern file conversion platform that converts between PDF, Word, PowerPoint, and text files with  MySQL database backend.
 
 ## Features
 
