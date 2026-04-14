@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dinosaur Identifier</title>
+    <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Dinosaur Identifier</h1>
+        <p>Choose traits and the app will suggest the closest dinosaur.</p>
+
+        <form method="post" class="dino-form">
+            <label>Category</label>
+            <select name="category" required>
+                {% for cat in categories %}
+                    <option value="{{ cat }}">{{ cat }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Diet</label>
+            <select name="diet" required>
+                {% for diet in diets %}
+                    <option value="{{ diet }}">{{ diet }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Period</label>
+            <select name="period" required>
+                {% for period in periods %}
+                    <option value="{{ period }}">{{ period }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Number of legs</label>
+            <select name="legs" required>
+                {% for leg in legs_options %}
+                    <option value="{{ leg }}">{{ leg }}</option>
+                {% endfor %}
+            </select>
+
+            <label>Length in meters (optional)</label>
+            <input type="number" name="length_m" step="0.1" min="0" placeholder="e.g. 8" />
+
+            <button type="submit">Identify Dinosaur</button>
+        </form>
+
+        {% if result %}
+            <div class="result-card">
+                <h2>Predicted Dinosaur</h2>
+                <p><strong>{{ result.name }}</strong></p>
+                <p>{{ result.description }}</p>
+                <p><strong>Category:</strong> {{ result.category }}</p>
+                <p><strong>Diet:</strong> {{ result.diet }}</p>
+                <p><strong>Period:</strong> {{ result.period }}</p>
+                <p><strong>Legs:</strong> {{ result.legs }}</p>
+                <p><strong>Length:</strong> {{ result.length_m }} meters</p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
