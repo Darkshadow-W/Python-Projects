@@ -1,9 +1,9 @@
 #  Python projects
 
- 1.Identifies Dinosaur with selected categories
+1. Identifies Dinosaur with selected categories
 
 
- 2.PDF Editor and Converter
+2. PDF Editor and Converter
 
 3. YouTube Video Downloader - A simple script to download YouTube videos.
 
